@@ -118,7 +118,7 @@ class YOLOv3(object):
 
     def net(self, img):
         # darknet
-        stages = [1, 2, 8, 8, 4]
+        stages = [1, 1, 1, 1, 1]
         assert len(self.anchor_mask) <= len(stages), "anchor masks can't bigger than downsample times"
         # 256x256
         conv1 = self.conv_bn(img, num_filters=32, filter_size=3, stride=1, padding=1)
@@ -130,7 +130,7 @@ class YOLOv3(object):
             blocks.append(block)
             if i < len(stages) - 1:
                 downsample_ = self.downsample(block, block.shape[1] * 2)
-        blocks = blocks[-1:-4:-1]  # 取倒数三层，并且逆序，后面跨层级联需要
+        blocks = [blocks[-2]]
 
         # yolo detector
         for i, block in enumerate(blocks):

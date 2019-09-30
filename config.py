@@ -18,12 +18,12 @@ train_parameters = {
     "use_tiny": False,  # 是否使用 裁剪 tiny 模型
     "max_box_num": 120,  # 一幅图上最多有多少个目标
     "num_epochs": 80,
-    "train_batch_size": 8,  # 对于完整 yolov3，每一批的训练样本不能太多，内存会炸掉；如果使用 tiny，可以适当大一些
+    "train_batch_size": 15,      # 对于完整 yolov3，每一批的训练样本不能太多，内存会炸掉；如果使用 tiny，可以适当大一些
     "use_gpu": True,
     "yolo_cfg": {
-        "input_size": [3, 448, 448],  # 原版的边长大小为608，为了提高训练速度和预测速度，此处压缩为448
-        "anchors": [7, 10, 12, 22, 24, 17, 22, 45, 46, 33, 43, 88, 85, 66, 115, 146, 275, 240],
-        "anchor_mask": [[6, 7, 8], [3, 4, 5], [0, 1, 2]]
+        "input_size": [3, 448, 448],    # 原版的边长大小为608，为了提高训练速度和预测速度，此处压缩为448
+        "anchors": [37, 50, 50, 37],
+        "anchor_mask": [[0, 1]]
     },
     "yolo_tiny_cfg": {
         "input_size": [3, 256, 256],
@@ -34,7 +34,7 @@ train_parameters = {
     "mean_rgb": [127.5, 127.5, 127.5],
     "mode": "train",
     "multi_data_reader_count": 4,
-    "apply_distort": True,
+    "apply_distort": False,
     "nms_top_k": 300,
     "nms_pos_k": 300,
     "valid_thresh": 0.01,
